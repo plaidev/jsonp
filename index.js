@@ -4,9 +4,10 @@ var _ = require('lodash');
 
 var callbackId = 0;
 
-function getCallbackName() {
+function getCallbackName(callback_header) {
+  callback_header = callback_header || '__jspcb__';
   callbackId += 1;
-  return 'jsonp' + callbackId;
+  return callback_header + callbackId;
 }
 
 function prepareUrl(url, params) {
@@ -20,6 +21,7 @@ module.exports = function jsonp(url, fn) {
   var self, my = {
     url: url,
     callback_param: 'callback',
+    callback_header: '__jspcb__',
     query: {}
   };
 
@@ -35,12 +37,13 @@ module.exports = function jsonp(url, fn) {
   function options(opts) {
     if(opts.callback_param)
       my.callback_param = opts.callback_param;
+    if(opts.callback_header)
+      my.callback_header = opts.callback_header;
     return self;
   }
 
   function end(fn) {
-    var js, fjs, fnName = getCallbackName();
-
+    var js, fjs, fnName = getCallbackName(my.callback_header);
     window[fnName] = function(json) {
       // cleanup after the call
       window[fnName] = undefined;
@@ -48,7 +51,6 @@ module.exports = function jsonp(url, fn) {
       // execute provided callback
       fn(json);
     };
-
     my.query[my.callback_param] = fnName;
     js = document.createElement('script');
     js.src = prepareUrl(my.url, my.query);
