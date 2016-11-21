@@ -12,7 +12,7 @@ function getCallbackName(callback_header) {
 
 function _map(array, func) {
   var results = [];
-  for (var i=0; array.length<i; i++) {
+  for (var i=0; i<array.length; i++) {
     results.push(func(array[i]))
   }
   return results;
