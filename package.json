@@ -1,6 +1,6 @@
 {
   "name": "component-jsonp",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "Tiny subset of [superagent][]-like API to be used with [jsonp][] requests",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nashibao/jsonp/issues"
   },
-  "homepage": "https://github.com/nashibao/jsonp#readme"
+  "homepage": "https://github.com/nashibao/jsonp#readme",
+  "dependencies": {
+    "lodash.keys": "^4.2.0"
+  }
 }
