@@ -1,6 +1,7 @@
 // unique callback number
 
-var _ = require('lodash');
+var _map = require('lodash.map');
+var _keys = require('lodash.keys');
 
 var callbackId = 0;
 
@@ -11,7 +12,7 @@ function getCallbackName(callback_header) {
 }
 
 function prepareUrl(url, params) {
-  return url + '?' + _.map(_.keys(params), function(key) {
+  return url + '?' + _map(_keys(params), function(key) {
       return key + '=' + encodeURIComponent(params[key]);
     })
     .join('&');
