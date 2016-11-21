@@ -1,6 +1,6 @@
 {
   "name": "component-jsonp",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "Tiny subset of [superagent][]-like API to be used with [jsonp][] requests",
   "main": "index.js",
   "scripts": {
