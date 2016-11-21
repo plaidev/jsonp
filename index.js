@@ -1,6 +1,5 @@
 // unique callback number
 
-var _map = require('lodash.map');
 var _keys = require('lodash.keys');
 
 var callbackId = 0;
@@ -9,6 +8,14 @@ function getCallbackName(callback_header) {
   callback_header = callback_header || '__jspcb__';
   callbackId += 1;
   return callback_header + callbackId;
+}
+
+function _map(array, func) {
+  var results = [];
+  for (var i=0; array.length<i; i++) {
+    results.push(func(array[i]))
+  }
+  return results;
 }
 
 function prepareUrl(url, params) {
